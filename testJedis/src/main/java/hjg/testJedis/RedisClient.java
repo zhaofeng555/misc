@@ -23,12 +23,23 @@ public class RedisClient {
 	public RedisClient() {
 		initialPool();
 		initialShardedPool();
+	}
+	
+	public void releaseRes(){
+		jedisPool.returnResource(jedis);
+		shardedJedisPool.returnResource(shardedJedis);
+	}
+	public void initRes(){
 		shardedJedis = shardedJedisPool.getResource();
 		jedis = jedisPool.getResource();
 	}
 
 	public static void main(String[] args) {
-		new RedisClient().show(); 
+		RedisClient client = new RedisClient();
+		client.initRes();
+//		client.show();
+		client.test3();
+		client.releaseRes();
 	}
 
 	void test1() {
@@ -49,6 +60,20 @@ public class RedisClient {
 		c.shardedJedisPool.returnResource(shardedJedis);
 	}
 
+	//保存，获取大对象
+	void test3() {
+		PersonUtils ut = new PersonUtils(jedis);
+
+		ut.setObject();//save person
+		
+		Person person = ut.getObject(100);
+		System.out.println(person);
+		
+		person = ut.getObject(101);
+		System.out.println(person);
+
+	}
+	
 	// public <T>T getResult(){
 	// T result = null;
 	// try{
@@ -109,17 +134,17 @@ public class RedisClient {
 		SetOperate();
 		SortedSetOperate();
 		HashOperate();
-		jedisPool.returnResource(jedis);
-		shardedJedisPool.returnResource(shardedJedis);
 	}
 
 	private void KeyOperate() {
-		System.out.println("============key==========");
+		System.out
+				.println("======================key==========================");
 		// 清空数据
 		System.out.println("清空库中所有数据：" + jedis.flushDB());
 		// 判断key否存在
 		System.out.println("判断key999键是否存在：" + shardedJedis.exists("key999"));
-		System.out.println("新增key001,value001键值对："	+ shardedJedis.set("key001", "value001"));
+		System.out.println("新增key001,value001键值对："
+				+ shardedJedis.set("key001", "value001"));
 		System.out.println("判断key001是否存在：" + shardedJedis.exists("key001"));
 		// 输出系统中所有的key
 		System.out.println("新增key002,value002键值对："	+ shardedJedis.set("key002", "value002"));
@@ -153,11 +178,12 @@ public class RedisClient {
 	}
 
 	private void StringOperate() {
-		System.out.println("=========String_1======");
+		System.out
+				.println("======================String_1==========================");
 		// 清空数据
 		System.out.println("清空库中所有数据：" + jedis.flushDB());
 
-		System.out.println("===========增===========");
+		System.out.println("=============增=============");
 		jedis.set("key001", "value001");
 		jedis.set("key002", "value002");
 		jedis.set("key003", "value003");
