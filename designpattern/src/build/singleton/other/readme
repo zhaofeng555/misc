@@ -1,0 +1,8 @@
+		 特征词 	JDK版本要求 	是否LazyInitialization 	是否多线程安全 	实现难度 	说明 
+第一种 	classic   			是 						否 			易 		不要求线程安全 
+第二种 	use "synchronize" keyword   是 是 易 getInstance()的性能对应用程序不是很关键(比如该方法使用不太频繁) 
+第三种 eagerly create   否 是 易 创建该实例负担不太繁重； 
+该实例被用到的可能性较大 
+第四种 双检锁 (double-checked locking) since 1.5 是 是 较复杂 getInstance()的性能对应用程序很关键； 
+第五种 Class holder lazy initialization   是 是 一般   
+第六种 Enum singleton since 1.5 否 是 易 自动支持序列化；不能通过reflection attack来调用私有构造方法 
