@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sqlmap>
+	<queryUserById>select * from user where name='小明'</queryUserById>
+	<queryUserByName>select * from user where name=? and sex='男'</queryUserByName>
+	<user.findById>select * from user u where u.sex!=''</user.findById>
+	<user.query>
+		select * from user 
+		where id = 1 and
+		name=?
+	</user.query>
+</sqlmap>
