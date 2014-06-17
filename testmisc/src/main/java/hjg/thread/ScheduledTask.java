@@ -3,10 +3,6 @@ package hjg.thread;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Date;
-/**
- * 
- * @author Dhinakaran P.
- */
 // Create a class extends with TimerTask
 public class ScheduledTask extends TimerTask {
  
