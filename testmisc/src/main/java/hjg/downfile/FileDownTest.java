@@ -37,7 +37,7 @@ public class FileDownTest {
 	            // 清空response   
 	            response.reset();   
 	            // 设置response的Header   
-	            response.addHeader("Content-Disposition", "attachment;filename=" + new String(filename.getBytes()));   
+	            response.addHeader("Content-Disposition", "attachment;filename=" + new String(filename.getBytes()).concat(ext));   
 	            response.addHeader("Content-Length", "" + file.length());   
 	            OutputStream toClient = new BufferedOutputStream(response.getOutputStream());   
 	            response.setContentType("application/octet-stream");   
@@ -84,12 +84,13 @@ public class FileDownTest {
 	            FileOutputStream fs = new FileOutputStream("c:/abc.gif");   
 	  
 	            byte[] buffer = new byte[1204];   
-	            int length;   
 	            while ((byteread = inStream.read(buffer)) != -1) {   
 	                bytesum += byteread;   
 	                System.out.println(bytesum);   
 	                fs.write(buffer, 0, byteread);   
 	            }   
+	            fs.flush();
+	            fs.close();
 	        } catch (FileNotFoundException e) {   
 	            e.printStackTrace();   
 	        } catch (IOException e) {   
