@@ -7,9 +7,13 @@ import java.io.IOException;
 public class ReadResources {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
+//	Class.getResource("")    返回的是当前Class这个类所在包开始的为置   
+//	Class.getResource("/") 返回的是classpath的位置   
+//	getClassLoader().getResource("")  返回的是classpath的位置   
+//	getClassLoader().getResource("/")  错误的!!  
 	}
+
 
 	// jdk1.6 or early
 	public static void test1() {
