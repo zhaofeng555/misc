@@ -17,7 +17,7 @@ public class JdbcTest {
 
 	public void connDB2() throws Exception {
 		// 2、DB2数据库
-		// Class.forName("com.ibm.db2.jdbc.app.DB2Driver ").newInstance();
+		Class.forName("com.ibm.db2.jdbc.app.DB2Driver ").newInstance();
 		String url = "jdbc:db2://localhost:5000/sample"; // sample为你的数据库名
 		String user = "admin";
 		String password = "";
@@ -54,8 +54,7 @@ public class JdbcTest {
 	public void connMySQL() throws Exception {
 		// 6、MySQL数据库
 		Class.forName("org.gjt.mm.mysql.Driver").newInstance();
-		String url = "jdbc:mysql://localhost/myDB?user=soft&password=soft1234&useUnicode=true&characterEncoding=8859_1";
-		// myDB为数据库名
+		String url = "jdbc:mysql://localhost/myDB?user=soft&password=soft1234&useUnicode=true&characterEncoding=8859_1";// myDB为数据库名
 		Connection conn = DriverManager.getConnection(url);
 	}
 
@@ -76,7 +75,4 @@ public class JdbcTest {
 
 	}
 
-	public void test() {
-
-	}
 }
