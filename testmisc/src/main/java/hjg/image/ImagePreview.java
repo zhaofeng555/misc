@@ -26,6 +26,7 @@ import org.apache.log4j.Logger;
 import com.sun.image.codec.jpeg.JPEGCodec;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
 
+//图片缩放
 public class ImagePreview {
 	private final static Logger LOGGER = Logger.getLogger(ImagePreview.class);
 
