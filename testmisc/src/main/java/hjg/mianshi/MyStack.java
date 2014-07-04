@@ -18,7 +18,6 @@ public class MyStack<T> {
 	private final static int INCREASE_SIZE = 50;
 
 	/**
-	 * 
 	 * @param T
 	 * @param i
 	 *            栈的初始大小
