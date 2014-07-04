@@ -80,8 +80,7 @@ public class MyQueue {
 		while (!theQueue.isEmpty()) // 遍历队列并移除所有元素
 		{
 			long n = theQueue.remove(); // (40, 50, 60, 70, 80)
-			System.out.print(n);
-			System.out.print(" ");
+			System.out.print(n+" ");
 		}
 		
 		System.out.println("");
