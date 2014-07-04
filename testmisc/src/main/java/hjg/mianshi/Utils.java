@@ -9,5 +9,11 @@ public class Utils {
 		}
 		System.out.println();
 	}
+	public static<T> void printArray(T[] arr) {
+		for (T a : arr) {
+			System.out.print(a+"\t");
+		}
+		System.out.println();
+	}
 
 }
