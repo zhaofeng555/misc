@@ -12,11 +12,7 @@ import java.nio.channels.FileChannel;
 import java.nio.channels.FileChannel.MapMode;
 
 /**
- * 
  * 用NIO读取大文本（1G以上）
- * 
- * @author landon
- * 
  */
 public class ReadLargeTextWithNIO {
 	public static void main(String... args) throws Exception {
