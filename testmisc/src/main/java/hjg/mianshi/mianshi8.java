@@ -15,7 +15,9 @@ public class mianshi8 {
 			String line[] = in.nextLine().split("\\s");
 			int first = fromStringToInt(line[0]);
 			int second = fromStringToInt(line[1]);
-			buffer.append(fromIntToString(first + second));
+			String res = fromIntToString(first + second).toString();
+			System.out.println("res = "+res);
+			buffer.append(res);
 			buffer.append("\n");
 			i++;
 		}
