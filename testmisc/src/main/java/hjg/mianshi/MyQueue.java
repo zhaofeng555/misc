@@ -83,6 +83,7 @@ public class MyQueue {
 			System.out.print(n);
 			System.out.print(" ");
 		}
+		
 		System.out.println("");
 	}
 
