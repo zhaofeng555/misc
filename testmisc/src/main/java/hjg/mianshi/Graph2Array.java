@@ -1,11 +1,11 @@
 package hjg.mianshi;
 
-public class Graph {
+public class Graph2Array {
 	private int size;
 	private int[][] edge;
 	private boolean isDir;
 
-	public Graph(int s, boolean isDir) {
+	public Graph2Array(int s, boolean isDir) {
 		size = s;
 		edge = new int[size][size];
 		this.isDir = isDir;
@@ -28,7 +28,7 @@ public class Graph {
 	}
 
 	public static void main(String[] args) {
-		Graph g = new Graph(6, true);
+		Graph2Array g = new Graph2Array(6, true);
 		g.setEdge(0, 1, 10);
 		g.setEdge(0, 2, 25);
 		g.setEdge(0, 5, 2);
