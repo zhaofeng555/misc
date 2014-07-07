@@ -11,6 +11,7 @@ public class BinTree {
 	/** 根节点 */
 	private int maxLength = 1000;
 	/** 字符在数组中的位置 */
+	
 	private int elementPositionInCharArray = 0;
 	/***/
 	private BinTree root;
