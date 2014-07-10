@@ -2,6 +2,7 @@ package hjg.qunaer;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 /*
@@ -51,20 +52,6 @@ public class ArrGenerateArr {
 		return assistArr;
 	}
 
-	// public List<Integer> produceTargetIntList(int arr[]){
-	// //创建辅助数组
-	// int n = 0;
-	// for(int i = 0 ; i < arr.length ; i ++){
-	// if(arr[i]%3==0){//能被3整除
-	// for(int j = 0 ; j < arr.length ; j ++){
-	// list.add(arr[i]+arr[j]);
-	// }
-	// }else{
-	// list.add(2*arr[i]);
-	// }
-	// }
-	// return list;
-	// }
 	// 溢出数字中为0的项
 	public int[] deleteArrZero(int[] arr) {
 		// 因为0是在后边才可能连续出现，所以从后边删除

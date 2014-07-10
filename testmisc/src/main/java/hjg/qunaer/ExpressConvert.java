@@ -33,37 +33,36 @@ public class ExpressConvert {
 	}
 
 	/**
-	 * 转为后缀表达式: 1、如果是"("直接压入stack栈。
+	 * 转为后缀表达式: 
+	 * 1、如果是"("直接压入stack栈。
 	 * 2、如果是")"，依次从stack栈弹出运算符加到数组newExpressionStrs的末尾，知道遇到"("；
 	 * 3、如果是非括号，比较扫描到的运算符，和stack栈顶的运算符。如果扫描到的运算符优先级高于栈顶运算符则，把运算符压入栈。否则的话，
-	 * 就依次把栈中运算符弹出加到数组newExpressionStrs的末尾
-	 * ，直到遇到优先级低于扫描到的运算符或栈空，并且把扫描到的运算符压入栈中。就这样依次扫描
-	 * ，知道结束为止。如果扫描结束，栈中还有元素，则依次弹出加到数组newExpressionStrs的末尾，就得到了后缀表达式。
+	 * 就依次把栈中运算符弹出加到数组newExpressionStrs的末尾，直到遇到优先级低于扫描到的运算符或栈空，并且把扫描到的运算符压入栈中。就这样依次扫描，知道结束为止。如果扫描结束，栈中还有元素，则依次弹出加到数组newExpressionStrs的末尾，就得到了后缀表达式。
 	 * 
-	 * @param expressionStrs
+	 * @param expressionChars
 	 * @return
 	 */
-	public List toSuffixExpression(char[] expressionStrs) {
+	public List toSuffixExpression(char[] expressionChars) {
 		// 新组成的表达式
 		List newExpressionStrs = new ArrayList();
 		Stack stack = new Stack();
-		for (int i = 0; i < expressionStrs.length; i++) {
-			if ('(' == (expressionStrs[i])) { // 如果是左括号,则入栈
-				stack.push(expressionStrs[i]);
-			} else if ('+' == expressionStrs[i] || '-' == expressionStrs[i] || '*' == expressionStrs[i]
-					|| '/' == expressionStrs[i]) {
-
+		for (int i = 0; i < expressionChars.length; i++) {
+			
+			if ('(' == (expressionChars[i])) { // 如果是左括号,则入栈
+				stack.push(expressionChars[i]);
+				
+			} else if ('+' == expressionChars[i] || '-' == expressionChars[i] || '*' == expressionChars[i] || '/' == expressionChars[i]) {
 				if (!stack.empty()) { // 取出先入栈的运算符
 					Character s = (Character) stack.pop();
-					if (comparePrior(expressionStrs[i], s)) { // 如果栈值优先级小于要入栈的值,则继续压入栈
+					if (comparePrior(expressionChars[i], s)) { // 如果栈值优先级小于要入栈的值,则继续压入栈
 						stack.push(s);
 					} else { // 否则取出值
 						newExpressionStrs.add(s);
 					}
 				}
-
-				stack.push(expressionStrs[i]);
-			} else if (')' == expressionStrs[i]) { // 如果是')',则出栈,一直到遇到'('
+				stack.push(expressionChars[i]);
+				
+			} else if (')' == expressionChars[i]) { // 如果是')',则出栈,一直到遇到'('
 				while (!stack.empty()) {
 					Character s = (Character) stack.pop();
 					if (!('(' == s)) {
@@ -72,10 +71,14 @@ public class ExpressConvert {
 						break;
 					}
 				}
+				
 			} else {
-				newExpressionStrs.add(expressionStrs[i]);
+				
+				newExpressionStrs.add(expressionChars[i]);
 			}
+			
 		}
+		
 		while (!stack.empty()) {
 			Character s = (Character) stack.pop();
 			newExpressionStrs.add(s);
@@ -85,7 +88,8 @@ public class ExpressConvert {
 
 	public static void main(String[] args) {
 
-		String expressionStr = "5+(4-5+1)-4+(6-5+3)+2";
+//		String expressionStr = "5-(7-5+1)-4+(6-5+3)+2";
+		String expressionStr = "7-5+(4+(1+2))";
 		// 分割成表达式数组
 		char[] expressionChrs = expressionStr.toCharArray();
 
