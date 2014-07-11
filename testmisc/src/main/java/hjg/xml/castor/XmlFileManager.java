@@ -24,9 +24,9 @@ import org.xml.sax.InputSource;
 public class XmlFileManager {
 	
 	public static void main(String[] args) {
-		XmlFileManager xfm = new XmlFileManager();
+//		XmlFileManager xfm = new XmlFileManager();
 		String path = "d:/student.xml";
-		String content = xfm.getResourceFilePath(path);
+		String content = getResourceFilePath(path);
 		System.out.println(content);
 	}
 	/**
