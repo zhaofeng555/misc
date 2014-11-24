@@ -9,7 +9,6 @@ public class DebugTest {
 	
 	void t1(){
 //		ss
-//		s
 	}
 
 	public static void main(String[] args) throws Exception {
