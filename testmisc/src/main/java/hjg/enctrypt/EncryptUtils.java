@@ -2,12 +2,19 @@ package hjg.enctrypt;
 
 
 import java.math.BigInteger;
+import java.security.AlgorithmParameters;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.KeySpec;
 
+import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.PBEKeySpec;
+import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -115,6 +122,19 @@ public class EncryptUtils  {
        
         return null;
 	}
+	public static String encryptPBKDF2(String msg, String salt, int iterations, int len) {
+		try {
+			PBEKeySpec spec = new PBEKeySpec(msg.toCharArray(), salt.getBytes(), iterations, len);
+			SecretKeyFactory skf = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+			byte[] hash = skf.generateSecret(spec).getEncoded();
+			
+			return iterations + toHex(salt.getBytes()) + toHex(hash);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		
+		return null;
+	}
 	
 	/**
 	 * 转化十六进制
@@ -181,8 +201,12 @@ public class EncryptUtils  {
 
 	public static void main(String[] args) {
 		System.out.println(EncryptUtils.encryptMD5("123456"));
-		System.out.println(EncryptUtils.encryptSalt("123456"));
+		System.out.println(EncryptUtils.encryptMD5("123456"));
+//		System.out.println(EncryptUtils.encryptSalt("123456"));
+//		System.out.println(EncryptUtils.encryptSalt("123456"));
 		System.out.println(EncryptUtils.encryptSHA("123456"));
+		System.out.println(EncryptUtils.encryptSHA("123456"));
+//		System.out.println(EncryptUtils.encryptPBKDF2("123456"));
 		System.out.println(EncryptUtils.encryptPBKDF2("123456"));
 	}
 }
