@@ -15,8 +15,10 @@ import com.qiniu.api.rs.PutPolicy;
 
 public class QiniuUtils {
 
-	final static String ak = "gx37fl79RG1QGc0DHddKTTARO2GzbeilG18mui-I";
-	final static String sk = "5lLL2wNXdJeD2zeSEZLc8GdQUVW7qVfBA8rCFfs5";
+//	final static String ak = "gx37fl79RG1QGc0DHddKTTARO2GzbeilG18mui-I";
+//	final static String sk = "5lLL2wNXdJeD2zeSEZLc8GdQUVW7qVfBA8rCFfs5";
+	final static String ak = "BOpi1bEsGrflV3oBkQjdRZy2vicWKVv2uF0ygly-";
+	final static String sk = "mU8kZgbirgNBiEFSh-4zyJherpAdq9CsaS0xJNCe";
 	
 	private static void initKey(){
 		Config.ACCESS_KEY = ak;
@@ -53,6 +55,7 @@ public class QiniuUtils {
 	}
 	
 	public static void main(String[] args) throws Exception {
+		upFile("haojgff", "d:/td.jpg");
 	}
 	
 	
