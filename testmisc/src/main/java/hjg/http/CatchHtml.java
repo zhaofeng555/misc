@@ -21,7 +21,9 @@ public class CatchHtml {
 	public static void main(String[] args) {
 		
 		try {
-			URL url = new URL("http://www.baidu.com/index.html");
+//			String u = "http://www.360doc.com/content/14/0806/18/18815109_399903063.shtml";
+			String u = "http://localhost:8081/ihaniforum/feedback/listener";
+			URL url = new URL(u);
 			
 			URLConnection conn = url.openConnection();
 			conn.setDoOutput(true);
