@@ -1,39 +1,37 @@
 package hjg.enctrypt;
-
-import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
 /**
- * @author hjg
- * @version 创建时间：2010-4-29下午07:56:56 类说明
- * 
- **/
+ * MD5算法
+ */
 public class MD5 {
 
-	public static String hex(byte[] array) {
-		StringBuffer sb = new StringBuffer();
-		for (int i = 0; i < array.length; ++i) {
-			sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100).toUpperCase().substring(1, 3));
+	/**
+	 * 获取MD5 结果字符串
+	 * 
+	 * @param source
+	 * @return
+	 */
+	public static String encode(byte[] source) {
+		String s = null;
+		char hexDigits[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
+		try {
+			java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
+			md.update(source);
+			byte tmp[] = md.digest(); 
+			char str[] = new char[16 * 2]; 
+			int k = 0; 
+			for (int i = 0; i < 16; i++) { 
+				byte byte0 = tmp[i]; 
+				str[k++] = hexDigits[byte0 >>> 4 & 0xf]; 
+				str[k++] = hexDigits[byte0 & 0xf]; 
+			}
+			s = new String(str); 
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		return sb.toString();
+		return s;
 	}
-
-	public static String md5 (String message) {
-        try {
-            MessageDigest md = MessageDigest.getInstance("MD5"); //想用SHA加密的话就把MD5换成SHA吧
-//            System.out.println(message.getBytes("CP1252"));
-            return hex (md.digest(message.getBytes("CP1252")));
-        } catch (NoSuchAlgorithmException e) {
-        	e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-        	e.printStackTrace();
-        }
-        return null;
-    }
-
-	public static void main(String[] args) {
-		System.out.println(md5("hjg"));
+	
+	public static String getMD5(String source) {
+		return (source == null || "".equals(source)) ? "" : encode(source.getBytes());
 	}
-
 }
