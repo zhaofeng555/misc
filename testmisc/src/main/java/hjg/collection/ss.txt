@@ -1,0 +1,187 @@
+packagetest.ffm83.commons.collections;
+
+ 
+
+importjava.util.Date;
+
+importjava.util.HashMap;
+
+importjava.util.Iterator;
+
+importjava.util.Map;
+
+ 
+
+ 
+
+importorg.apache.commons.collections.BidiMap;
+
+importorg.apache.commons.collections.Factory;
+
+import org.apache.commons.collections.LRUMap;
+
+import org.apache.commons.collections.MultiHashMap;
+
+importorg.apache.commons.collections.MultiMap;
+
+importorg.apache.commons.collections.bidimap.DualHashBidiMap;
+
+importorg.apache.commons.collections.map.LazyMap;
+
+importorg.apache.commons.lang.StringUtils;
+
+ 
+
+public classMapUsage {
+
+   public static voidmain(String[] args) {
+
+       demoBidiMap();
+
+       demoMultiMap();
+
+       demoLazyMap();
+
+       demoLRUMap();
+
+    }
+
+ 
+
+   //双向Map，可以通过key找到value，也可以通过value找到key
+
+    public static voiddemoBidiMap() {
+
+       System.out.println(StringUtils.center("demoBidiMap ", 40, "="));
+
+       BidiMap bidiMap = newDualHashBidiMap();
+
+       bidiMap.put("BJ", "Beijing");
+
+       bidiMap.put("SH", "Shanghai");
+
+       bidiMap.put("GZ", "Guangzhou");
+
+       bidiMap.put("CD", "Chengdu");
+
+       System.out.println("Key-Value:BJ = " + bidiMap.get("BJ"));
+
+       System.out.println("Value-Key:Chengdu = " + bidiMap.getKey("Chengdu"));
+
+       System.out.println(StringUtils.repeat("=",40));
+
+    }
+
+ 
+
+    //一对多
+
+    public static voiddemoMultiMap() {
+
+       System.out.println(StringUtils.center("demoMultiMap ", 40, "="));
+
+       MultiMap multiMap = new MultiHashMap();
+
+       multiMap.put("Sean", "C/C++");
+
+       multiMap.put("Sean", "OO");
+
+       multiMap.put("Sean", "Java");
+
+       multiMap.put("Sean", ".NET");
+
+       multiMap.remove("Sean", "C/C++");
+
+       System.out.println("Sean'sskill set: " + multiMap.get("Sean"));
+
+       System.out.println(StringUtils.repeat("=",40));
+
+    }
+
+   
+
+/* 本方法已经不推荐使用，仅用于示例
+
+    有时候需要将一批数据缓存，并且按照最近最少使用的规则淘汰。这时候就应该想到LRUMap。
+
+   LRUMap是一种尺寸固定的Map，当它的容量达到最大时采用最近最少使用的规则淘汰相应的元素。*/
+
+   public static voiddemoLRUMap() {
+
+      System.out.println(StringUtils.center("demoLRUMap ", 40, "="));
+
+      LRUMapcache = new LRUMap(5);
+
+ 
+
+      cache.put("01", "news1");
+
+      cache.put("02", "news2");
+
+      cache.put("03", "news3");
+
+      cache.put("04", "news4");
+
+      cache.put("05", "news5");
+
+ 
+
+      Stringnews1 = (String) cache.get("01");
+
+      Stringnews2 = (String) cache.get("02");
+
+      Stringnews3 = (String) cache.get("04");
+
+      Stringnews4 = (String) cache.get("03");
+
+      Stringnews5 = (String) cache.get("02");
+
+      Stringnews6 = (String) cache.get("05");
+
+ 
+
+      cache.put("06", "news6");
+
+ 
+
+      Iteratorit = cache.entrySet().iterator();
+
+      while(it.hasNext()) {
+
+         Map.Entryentry = (Map.Entry) it.next();
+
+         System.out.println(entry.getValue());
+
+      }
+
+   }
+
+ 
+
+    public static voiddemoLazyMap() {
+
+       System.out.println(StringUtils.center("demoLazyMap ", 40, "="));
+
+       // borrowed from Commons Collection's Javadoc
+
+       Factory factory = newFactory() {
+
+           public Object create() {
+
+                return newDate();
+
+           }
+
+       };
+
+       Map lazy = LazyMap.decorate(new HashMap(),factory);
+
+       System.out.println(lazy.get("NOW"));
+
+       System.out.println(StringUtils.repeat("=",40));
+
+    }
+
+ 
+
+}
